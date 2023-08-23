@@ -31,22 +31,25 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Third-Party Apps  
     'rest_framework',
     'rest_framework.authtoken',
-    'djoser',
     'debug_toolbar',
     'django_filters',
+    'djoser',
     
+    # Local Apps
     'BookList',
     'littleLemonAPI',
     'security',
-    'MyDjoser',
 ]
 
 MIDDLEWARE = [
@@ -153,14 +156,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 3,
     
-    # 'DEFAULT_AUTHENTICTION_CLASSES': (
-    #     'rest_framework.authentiction.TokenAuthentication',
-    #     'rest_framework.authentiction.SessionAuthentication',
-    # ),
+    'DEFAULT_AUTHENTICTION_CLASSES': (
+        'rest_framework.authentiction.TokenAuthentication',
+        'rest_framework.authentiction.SessionAuthentication',
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
     
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAuthenticated', 
-    # ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated', 
+    ),
     
     'DEFAULT_THROTTLE_RATES': {
         'anon':'2/minute',

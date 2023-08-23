@@ -1,21 +1,6 @@
-"""
-URL configuration for APIs project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
+# from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from security.urls import views as v
 
@@ -25,12 +10,16 @@ urlpatterns = [
     path('login/', v.login),
     
     path('api1/', include('BookList.urls', namespace='booklist')),
-    path('api2/', include('littleLemonAPI.urls', namespace='littleLemon')),
-    path('api/', include('security.urls', namespace='security')),
+    path('api2/', include('security.urls', namespace='security')),
+    path('api/', include('littleLemonAPI.urls', namespace='littleLemon')),
     
     path('__debug__/', include('debug_toolbar.urls')),
-    path('auth/', include('django.contrib.auth.urls')),
+    path('', include('django.contrib.auth.urls')),
     
-    path('auth2/', include('djoser.urls')),
-    path('auth2/', include('djoser.urls.authtoken')),
+    path('api/', include('djoser.urls')),
+    path('', include('djoser.urls.authtoken')),
+    
+    # path('token/', TokenObtainPairView.as_view(), name='token-obtain-pair'),
+    # path('token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
+
 ]

@@ -7,6 +7,8 @@ from django.core.paginator import Paginator, EmptyPage
 
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.throttling import AnonRateThrottle, UserRateThrottle
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .models import MenuItem, Category
 from .serializers import MenuItemSerializer, CategorySerializer
@@ -22,6 +24,7 @@ class MenuItemsViewSet(viewsets.ModelViewSet):
     
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
+    throttle_classes = [AnonRateThrottle, UserRateThrottle]
     
 
 # Generic Views
